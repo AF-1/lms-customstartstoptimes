@@ -1,0 +1,13 @@
+<extensions>
+	<details>
+		<title lang="EN">Custom Start Stop Times Repo (AF1)</title>
+	</details>
+	<plugin name="CustomStartStopTimes" version="0.1.0" minTarget="7.9" maxTarget="*">
+		<title lang="EN">Custom Start Stop Times</title>
+		<desc lang="EN">Avoid annoying song intros and skip silence at the end of a song by adding custom start and/or stop times to its comments tag. The song starts and ends, i.e. skips to the next one, when you want it to. Please visit the GitHub page for details.</desc>
+		<url>https://github.com/AF-1/lms-customstartstoptimes/releases/download/0.1.0/lms-customstartstoptimes-0.1.0.zip</url>
+		<creator>AF</creator>
+		<link>https://github.com/AF-1/lms-customstartstoptimes</link>
+		<sha>41799118cb8389cac6aed957cec8504f2c6e0a60</sha>
+	</plugin>
+</extensions>
