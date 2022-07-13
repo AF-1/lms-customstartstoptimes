@@ -1,0 +1,13 @@
+[% pagetitle = 'PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES_HEADER' | string; pagetitle = pagetitle _ " " _ name %]
+[% pwd_list = [ pagetitle ] %]
+[% PROCESS pageheader.html %]
+<style>
+@charset "UTF-8";
+.wrapper {padding: 5px;}
+.rltitlebold{font-weight:bold;
+</style>
+<br><br><br>
+	<div class="wrapper">
+	[% "PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES_DONE" | string %] <span class="rltitlebold">[% tmpIgnorePeriod %]</span> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMINS" | string %]
+	</div>
+[% PROCESS pagefooter.html %]

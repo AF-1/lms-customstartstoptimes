@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<extension>
+	<id>affc43d9-1609-44e8-48ce-17b735e8b3cd</id>
+	<name>PLUGIN_CUSTOMSTARTSTOPTIMES</name>
+	<module>Plugins::CustomStartStopTimes::Plugin</module>
+	<version>0.1.0</version>
+	<description>PLUGIN_CUSTOMSTARTSTOPTIMES_DESC</description>
+	<creator>AF</creator>
+	<optionsURL>plugins/CustomStartStopTimes/settings/settings.html</optionsURL>
+	<homepageURL>https://github.com/AF-1/lms-customstartstoptimes</homepageURL>
+	<defaultState>enabled</defaultState>
+	<targetApplication>
+		<id>Logitech Media Server</id>
+		<minVersion>7.9</minVersion>
+		<maxVersion>*</maxVersion>
+	</targetApplication>
+</extension>

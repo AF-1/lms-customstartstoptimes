@@ -1,0 +1,21 @@
+[% page = "PLUGIN_CUSTOMSTARTSTOPTIMES" %]
+[% PROCESS settings/header.html %]
+[% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TMPIGNOREPERIOD" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TMPIGNOREPERIOD_DESC" %]
+	<input type="text" class="stdedit sliderInput_1_15_1" name="pref_tmpignoreperiod" id="tmpignoreperiod" value="[% prefs.tmpignoreperiod %]" size="2"> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMINS_BOTH" | string %]
+[% END %]
+<br>
+
+[% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STARTTIMECORRECTION" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STARTTIMECORRECTION_DESC" %]
+	<input type="text" class="stdedit sliderInput_-2000_2000_100" name="pref_startcorr" id="startcorr" value="[% prefs.startcorr %]" size="3"> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMILLISECS" | string %]
+[% END %]
+<br>
+
+[% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STOPTIMECORRECTION" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STOPTIMECORRECTION_DESC" %]
+	<input type="text" class="stdedit sliderInput_-2000_2000_100" name="pref_stopcorr" id="stopcorr" value="[% prefs.stopcorr %]" size="3"> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMILLISECS" | string %]
+[% END %]
+<br>
+
+[% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_SHOWDECIMALS" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_SHOWDECIMALS_DESC" %]
+	<input name="pref_showdecimals" id="showdecimals" type="checkbox" [% IF prefs.showdecimals %] checked [% END %]>
+[% END %]
+[% PROCESS settings/footer.html %]
