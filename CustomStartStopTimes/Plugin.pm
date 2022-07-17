@@ -328,10 +328,7 @@ sub _tempIgnoreCSST_jive {
 	my $tmpIgnorePeriod = $prefs->get('tmpignoreperiod') + 0;
 	my $cbMsg = string('PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES_DONE').' '.$tmpIgnorePeriod.' '.string('SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMINS');
 	if (Slim::Buttons::Common::mode($client) !~ /^SCREENSAVER./) {
-		$client->showBriefly({'line' => [string('PLUGIN_CUSTOMSTARTSTOPTIMES'), $cbMsg]});
-	}
-	if (Slim::Utils::PluginManager->isEnabled('Plugins::MaterialSkin::Plugin')) {
-		Slim::Control::Request::executeRequest(undef, ['material-skin', 'send-notif', 'type:info', 'msg:'.$cbMsg, 'client:'.$client->id]);
+		$client->showBriefly({'line' => [string('PLUGIN_CUSTOMSTARTSTOPTIMES'), $cbMsg]}, 4);
 	}
 	$request->setStatusDone();
 }
