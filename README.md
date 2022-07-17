@@ -39,17 +39,11 @@ If you want to run the script on a large number of tracks, consider *exporting* 
 
 ## Installation
 
-### Using the repository URL
+You should be able to install **Custom Start Stop Times** from the LMS main repository (LMS plugin library):<br>**LMS > Settings > Plugins**.<br>
 
-- Add the repository URL below at the bottom of *LMS* > *Settings* > *Plugins* and click *Apply*:
-[https://raw.githubusercontent.com/AF-1/lms-customstartstoptimes/main/public.xml](https://raw.githubusercontent.com/AF-1/lms-customstartstoptimes/main/public.xml)
+If you want to test a new patch that hasn't made it into a release version yet or you need to install a previous version you'll have to [install the plugin manually](https://github.com/AF-1/sobras/wiki/Manual-installation-of-LMS-plugins).
 
-- Install the new version
-<br>
-
-### Manual Install
-
-Please read notes on how to [install a plugin manually](https://github.com/AF-1/sobras/wiki/Manual-installation-of-LMS-plugins).
+*Previously released* versions are available here for a very *limited* time after the release of a new version. The official LMS plugins page is updated about twice a day so it usually takes a couple of hours before new released versions are listed.
 <br><br><br>
 
 
