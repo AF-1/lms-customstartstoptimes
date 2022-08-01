@@ -330,6 +330,9 @@ sub _tempIgnoreCSST_jive {
 	if (Slim::Buttons::Common::mode($client) !~ /^SCREENSAVER./) {
 		$client->showBriefly({'line' => [string('PLUGIN_CUSTOMSTARTSTOPTIMES'), $cbMsg]}, 4);
 	}
+	if (Slim::Utils::PluginManager->isEnabled('Plugins::MaterialSkin::Plugin')) {
+		Slim::Control::Request::executeRequest(undef, ['material-skin', 'send-notif', 'type:info', 'msg:'.$cbMsg, 'client:'.$client->id, 'timeout:4']);
+	}
 	$request->setStatusDone();
 }
 
