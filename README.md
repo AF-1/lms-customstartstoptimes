@@ -53,4 +53,12 @@ The [**strings.txt**](https://github.com/AF-1/lms-customstartstoptimes/blob/main
 * It's probably not a bad idea to keep the translated strings roughly as long as the original ones.<br>
 * Some of these strings are supposed to be used with different UIs: my tests usually cover the LMS *default* skin, *Material* skin, *piCorePlayer* (or any other jivelite player like *SqueezePlay*) and maybe some ip3k player like *Boom* if applicable.
 * Please leave *(multiple) blank lines* (used to visually delineate different parts) as they are.
-<br>
+
+<br><br>
+
+## Bug reports
+
+If you want to **report a bug**, please **provide relevant server log entries and the version numbers of this plugin, LMS, Perl, and your OS**. You'll find them on the *LMS* > *Settings* > *Plugins* and the *LMS* > *Settings* > *Information* pages.
+
+Please post bug reports *only* [**here**](https://forums.slimdevices.com/showthread.php?116671-Announce-Custom-Start-Stop-Times).
+

@@ -2,9 +2,9 @@ PLUGIN_CUSTOMSTARTSTOPTIMES
 	EN	Custom Start Stop Times
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_DESC
-	EN	This plugin allows you to start and stop tracks at a specified playback/song time.<br>Just add custom start and stop times to a track's comments tag and, with the help of this plugin, the song will start and end, i.e. skip to the next one, when you want it to. No more annoying song intros or minutes of silence at the end.
+	EN	This plugin allows you to start and stop tracks at a specified playback/song time.<br>Just add custom start and stop times to a track's comments tag and, with the help of this plugin, the song will start and end, i.e. skip to the next one, when you want it to. No more annoying song intros or minutes of silence at the end. More information on the GitHub page.
 
-PLUGIN_USECOMMENTTAGINFO_LOG_DESC
+PLUGIN_CUSTOMSTARTSTOPTIMES_LOG_DESC
 	EN	Log of plugin CustomStartStopTimes
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSTARTTIME
