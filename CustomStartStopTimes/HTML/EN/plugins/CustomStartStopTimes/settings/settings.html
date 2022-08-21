@@ -1,7 +1,7 @@
 <style>.githublink{padding-left:22px;}</style>
 [% page = "PLUGIN_CUSTOMSTARTSTOPTIMES" %]
 [% PROCESS settings/header.html %]
-<span class="githublink"><a href="[% "PLUGIN_CUSTOMSTARTSTOPTIMES_SETTINGS_GITHUB_LINK" | string %]" target="_blank" rel="noopener noreferrer"><b>[% "PLUGIN_CUSTOMSTARTSTOPTIMES_SETTINGS_GITHUB_LINK_TEXT" | string %]</b></a></span>
+<span[% IF systemSkin != "material" %] class="githublink"[% END %]><a href="[% "PLUGIN_CUSTOMSTARTSTOPTIMES_SETTINGS_GITHUB_LINK" | string %]" target="_blank" rel="noopener noreferrer"><b>[% "PLUGIN_CUSTOMSTARTSTOPTIMES_SETTINGS_GITHUB_LINK_TEXT" | string %]</b></a></span>
 <br><br>
 [% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TMPIGNOREPERIOD" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TMPIGNOREPERIOD_DESC" %]
 	<input type="text" class="stdedit sliderInput_1_15_1" name="pref_tmpignoreperiod" id="tmpignoreperiod" value="[% prefs.tmpignoreperiod %]" size="2"> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMINS_BOTH" | string %]
