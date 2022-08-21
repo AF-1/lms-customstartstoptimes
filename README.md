@@ -2,6 +2,8 @@ Custom Start Stop Times
 ====
 
 **Custom Start Stop Times** allows you to start and stop tracks at a specified playback/song time.<br>Just add custom start and stop times to a track's comments tag and, with the help of this plugin, the song will start[^1] and end, i.e. skip to the next one, when you want it to. No more annoying song intros or minutes of silence at the end.
+<br><br>
+[⬅️ **Back to the list of all plugins**](https://github.com/AF-1/)
 <br><br><br><br>
 
 ## Requirements
