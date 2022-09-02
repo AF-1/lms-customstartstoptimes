@@ -42,7 +42,7 @@ use Plugins::CustomStartStopTimes::Settings;
 
 my $log = Slim::Utils::Log->addLogCategory({
 	'category' => 'plugin.customstartstoptimes',
-	'defaultLevel' => 'WARN',
+	'defaultLevel' => 'ERROR',
 	'description' => 'PLUGIN_CUSTOMSTARTSTOPTIMES',
 });
 my $serverPrefs = preferences('server');
