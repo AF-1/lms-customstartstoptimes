@@ -54,4 +54,3 @@ If you want to test a new patch that hasn't made it into a release version yet o
 
 If you think that you've found a bug, open an [**issue here on GitHub**](https://github.com/AF-1/lms-customstartstoptimes/issues) and fill out the ***Bug report* issue template**. Please post bug reports on **GitHub only**.
 <br><br><br><br>
-[^1]
