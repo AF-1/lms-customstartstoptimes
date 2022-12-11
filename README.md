@@ -12,8 +12,8 @@ Custom Start Stop Times
 - LMS database = **SQLite**
 <br><br><br>
 
-[^1]: If you want localized strings in your language, read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
-[^2]: As the LMS source code states: a "jump to a particular time in the current song should be dead-on for CBR, approximate for VBR".
+[^1]:If you want localized strings in your language, read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
+[^2]:As the LMS source code states: a "jump to a particular time in the current song should be dead-on for CBR, approximate for VBR".
 
 ## Comments tag patterns
 
