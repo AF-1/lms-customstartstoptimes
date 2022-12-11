@@ -35,10 +35,10 @@ If you use the **Music** app on **macOS**, take a look at the simple **Applescri
 - write those start and stop times to the comments tag of those tracks.
 
 Works for me but use at your own risk :-)<br>
-If you want to run the script on a large number of tracks, consider *exporting* the script as an *app*.[^2]
+If you want to run the script on a large number of tracks, consider *exporting* the script as an *app*.[^3]
 <br><br><br>
 
-[^2]: If you want the Music app to list your apps and Applescripts in the Scripts menu, you have to place them in `~/Library/Music/Scripts`.
+[^3]: If you want the Music app to list your apps and Applescripts in the Scripts menu, you have to place them in `~/Library/Music/Scripts`.
 
 ## Installation
 
