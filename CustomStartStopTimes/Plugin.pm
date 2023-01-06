@@ -107,7 +107,7 @@ sub _CSSTcommandCB {
 
 		my $currentComment = $track->comment;
 		if ($currentComment && $currentComment ne '') {
-			$log->debug("Current track's comment on client '".$clientID."' is ".$currentComment);
+			$log->debug("Current track's comment on client '".$clientID."' = ".$currentComment);
 
 			my $hasStartTime = $currentComment =~ /STARTTIME:/;
 			my $hasStopTime = $currentComment =~ /STOPTIME:/;
@@ -210,7 +210,7 @@ sub trackInfoHandler {
 	my $currentComment = $track->comment;
 
 	return unless $currentComment && $currentComment ne '';
-	$log->debug("Current track's comment on client '".$client->id."' is ".$currentComment);
+	$log->debug("Current track's comment on client '".$client->id."' = ".$currentComment);
 
 	my $hasStartTime = $currentComment =~ /STARTTIME:/;
 	my $hasStopTime = $currentComment =~ /STOPTIME:/;
