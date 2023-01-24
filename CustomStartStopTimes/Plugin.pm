@@ -99,12 +99,7 @@ sub _CSSTcommandCB {
 	$log->debug('Received command "'.$request->getRequestString().'" from client "'.$clientID.'"');
 	my $track = $::VERSION lt '8.2' ? Slim::Player::Playlist::song($client) : Slim::Player::Playlist::track($client);
 
-	if (defined $track) {
-		if (defined $track && !defined($track->url)) {
-			$log->warn('No track url. Exiting.');
-			return;
-		}
-
+	if (defined $track && $track->remote == 0) {
 		my $currentComment = $track->comment;
 		if ($currentComment && $currentComment ne '') {
 			$log->debug("Current track's comment on client '".$clientID."' = ".$currentComment);
@@ -156,8 +151,8 @@ sub jumpToStartTime {
 	my ($client, $track) = @_;
 
 	# don't jump if track's custom start/stop times are temp. ignored
-	$log->debug('client pluginData = '.Dumper($client->pluginData('CSSTignoreThisTrackURL')));
-	return if ($client->pluginData('CSSTignoreThisTrackURL') && $client->pluginData('CSSTignoreThisTrackURL') eq $track->url);
+	$log->debug('client pluginData = '.Dumper($client->pluginData('CSSTignoreThisTrackID')));
+	return if ($client->pluginData('CSSTignoreThisTrackID') && $client->pluginData('CSSTignoreThisTrackID') eq $track->id);
 
 	# get custom start time
 	my $currentComment = $track->comment;
@@ -364,7 +359,7 @@ sub _tempIgnoreCSST {
 
 	my $tmpIgnorePeriod = $prefs->get('tmpignoreperiod') + 0;
 	Slim::Utils::Timers::killTimers($client, \&tempIgnoreEndTimer);
-	$client->pluginData('CSSTignoreThisTrackURL' => $track->url);
+	$client->pluginData('CSSTignoreThisTrackID' => $track->id);
 	Slim::Utils::Timers::setTimer($client, time() + ($tmpIgnorePeriod * 60), \&tempIgnoreEndTimer, $client);
 
 	$log->debug("Will ignore start/stop times for track '".$track->title."' with ID $trackID for $tmpIgnorePeriod min on client with ID '".$client->id."'");
@@ -372,7 +367,7 @@ sub _tempIgnoreCSST {
 
 sub tempIgnoreEndTimer {
 	my $client = shift;
-	$client->pluginData('CSSTignoreThisTrackURL' => 'nourl');
+	$client->pluginData('CSSTignoreThisTrackID' => 'no_id');
 	$log->debug('Ignore period expired.')
 }
 
