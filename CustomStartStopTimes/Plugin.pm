@@ -150,7 +150,7 @@ sub _CSSTcommandCB {
 sub jumpToStartTime {
 	my ($client, $track) = @_;
 
-	# don't jump if track's custom start/stop times are temp. ignored
+	# don't jump if track's custom start time is temp. ignored
 	$log->debug('client pluginData = '.Dumper($client->pluginData('CSSTignoreThisTrackID')));
 	return if ($client->pluginData('CSSTignoreThisTrackID') && $client->pluginData('CSSTignoreThisTrackID') eq $track->id);
 
@@ -170,6 +170,10 @@ sub jumpToStartTime {
 
 sub customStopTimer {
 	my ($client, $track) = @_;
+
+	# check if track's custom stop time is temp. ignored
+	$log->debug('client pluginData = '.Dumper($client->pluginData('CSSTignoreThisTrackID')));
+	return if ($client->pluginData('CSSTignoreThisTrackID') && $client->pluginData('CSSTignoreThisTrackID') eq $track->id);
 
 	# get custom stop time
 	my $currentComment = $track->comment;
@@ -241,6 +245,16 @@ sub trackInfoHandler {
 
 sub tempIgnoreStartStopTimes {
 	my ($client, $url, $track, $remoteMeta, $tags, $filter) = @_;
+
+	my $currentComment = $track->comment;
+	return unless $currentComment && $currentComment ne '';
+	$log->debug("Current track's comment on client '".$client->id."' = ".$currentComment);
+
+	my $hasStartTime = $currentComment =~ /STARTTIME:/;
+	my $hasStopTime = $currentComment =~ /STOPTIME:/;
+
+	return unless ($hasStartTime || $hasStopTime);
+
 	my $tmpIgnorePeriod = $prefs->get('tmpignoreperiod');
 	my $displayText = string('PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES').' '.$tmpIgnorePeriod.' '.string('SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMINS');
 	if ($tags->{menuMode}) {

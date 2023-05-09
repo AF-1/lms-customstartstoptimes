@@ -40,6 +40,11 @@ If you want to run the script on a large number of tracks, consider *exporting* 
 
 [^3]: If you want the Music app to list your apps and Applescripts in the Scripts menu, you have to place them in `~/Library/Music/Scripts`.
 
+## Screenshots
+<img src="screenshots/csst.gif" width="100%">
+<br><br><br>
+
+
 ## Installation
 
 You should be able to install **Custom Start Stop Times** from the LMS main repository (LMS plugin library):<br>**LMS > Settings > Plugins**.<br>
