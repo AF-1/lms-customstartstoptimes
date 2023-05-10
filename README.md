@@ -41,7 +41,7 @@ If you want to run the script on a large number of tracks, consider *exporting* 
 [^3]: If you want the Music app to list your apps and Applescripts in the Scripts menu, you have to place them in `~/Library/Music/Scripts`.
 
 ## Screenshots
-<img src="screenshots/csst.gif" width="100%">
+<img src="screenshots/csst.gif" height=900>
 <br><br><br>
 
 
