@@ -28,7 +28,6 @@ use base qw(Slim::Web::Settings);
 
 use Slim::Utils::Prefs;
 use Slim::Utils::Log;
-use Data::Dumper;
 
 my $log = logger('plugin.customstartstoptimes');
 my $prefs = preferences('plugin.customstartstoptimes');

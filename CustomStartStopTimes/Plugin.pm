@@ -32,13 +32,9 @@ use Slim::Utils::Prefs;
 use Slim::Utils::Text;
 use Slim::Utils::Unicode;
 use Slim::Schema;
-use Data::Dumper;
 use POSIX;
 use Time::HiRes qw(time);
 use Path::Class;
-use URI::Escape qw(uri_escape_utf8 uri_unescape);
-
-use Plugins::CustomStartStopTimes::Settings;
 
 my $log = Slim::Utils::Log->addLogCategory({
 	'category' => 'plugin.customstartstoptimes',
@@ -52,7 +48,7 @@ sub initPlugin {
 	my $class = shift;
 	$class->SUPER::initPlugin(@_);
 
-	if (!$::noweb) {
+	if (main::WEBUI) {
 		require Plugins::CustomStartStopTimes::Settings;
 		Plugins::CustomStartStopTimes::Settings->new($class);
 	}
@@ -91,18 +87,18 @@ sub _CSSTcommandCB {
 	my $client = $request->client();
 
 	if (!defined $client) {
-		$log->debug('No client. Exiting CSSTcommandCB');
+		main::DEBUGLOG && $log->is_debug && $log->debug('No client. Exiting CSSTcommandCB');
 		return;
 	}
 
 	my $clientID = $client->id();
-	$log->debug('Received command "'.$request->getRequestString().'" from client "'.$clientID.'"');
+	main::DEBUGLOG && $log->is_debug && $log->debug('Received command "'.$request->getRequestString().'" from client "'.$clientID.'"');
 	my $track = $::VERSION lt '8.2' ? Slim::Player::Playlist::song($client) : Slim::Player::Playlist::track($client);
 
 	if (defined $track && $track->remote == 0) {
 		my $currentComment = $track->comment;
 		if ($currentComment && $currentComment ne '') {
-			$log->debug("Current track's comment on client '".$clientID."' = ".$currentComment);
+			main::DEBUGLOG && $log->is_debug && $log->debug("Current track's comment on client '".$clientID."' = ".$currentComment);
 
 			my $hasStartTime = $currentComment =~ /STARTTIME:/;
 			my $hasStopTime = $currentComment =~ /STOPTIME:/;
@@ -110,7 +106,7 @@ sub _CSSTcommandCB {
 			if ($hasStartTime || $hasStopTime) {
 				## newsong
 				if ($request->isCommand([['playlist'],['newsong']])) {
-					$log->debug('Received "newsong" cb.');
+					main::DEBUGLOG && $log->is_debug && $log->debug('Received "newsong" cb.');
 					# stop old timer for this client
 					Slim::Utils::Timers::killTimers($client, \&nextTrack);
 					jumpToStartTime($client, $track) if $hasStartTime;
@@ -119,16 +115,16 @@ sub _CSSTcommandCB {
 
 				## play
 				if (($request->isCommand([['playlist'],['play']])) || ($request->isCommand([['mode','play']]))) {
-					$log->debug('Received "play" or "mode play" cb.');
+					main::DEBUGLOG && $log->is_debug && $log->debug('Received "play" or "mode play" cb.');
 					jumpToStartTime($client, $track) if $hasStartTime;
 					customStopTimer($client, $track) if $hasStopTime;
 				}
 
 				## pause
 				if ($request->isCommand([['pause']]) || $request->isCommand([['mode'],['pause']])) {
-					$log->debug('Received "pause" or "mode pause" cb.');
+					main::DEBUGLOG && $log->is_debug && $log->debug('Received "pause" or "mode pause" cb.');
 					my $playmode = Slim::Player::Source::playmode($client);
-					$log->debug('playmode = '.$playmode);
+					main::DEBUGLOG && $log->is_debug && $log->debug('playmode = '.$playmode);
 
 					if ($playmode eq 'pause') {
 						Slim::Utils::Timers::killTimers($client, \&nextTrack);
@@ -139,7 +135,7 @@ sub _CSSTcommandCB {
 
 				## stop
 				if ($request->isCommand([["stop"]]) || $request->isCommand([['mode'],['stop']]) || $request->isCommand([['playlist'],['stop']]) || $request->isCommand([['playlist'],['sync']]) || $request->isCommand([['playlist'],['clear']]) || $request->isCommand([['power']])) {
-					$log->debug('Received "stop", "clear", "power" or "sync" cb.');
+					main::DEBUGLOG && $log->is_debug && $log->debug('Received "stop", "clear", "power" or "sync" cb.');
 					Slim::Utils::Timers::killTimers($client, \&nextTrack);
 				}
 			}
@@ -151,7 +147,7 @@ sub jumpToStartTime {
 	my ($client, $track) = @_;
 
 	# don't jump if track's custom start time is temp. ignored
-	$log->debug('client pluginData = '.Dumper($client->pluginData('CSSTignoreThisTrackID')));
+	main::DEBUGLOG && $log->is_debug && $log->debug('client pluginData = '.Data::Dump::dump($client->pluginData('CSSTignoreThisTrackID')));
 	return if ($client->pluginData('CSSTignoreThisTrackID') && $client->pluginData('CSSTignoreThisTrackID') eq $track->id);
 
 	# get custom start time
@@ -172,7 +168,7 @@ sub customStopTimer {
 	my ($client, $track) = @_;
 
 	# check if track's custom stop time is temp. ignored
-	$log->debug('client pluginData = '.Dumper($client->pluginData('CSSTignoreThisTrackID')));
+	main::DEBUGLOG && $log->is_debug && $log->debug('client pluginData = '.Data::Dump::dump($client->pluginData('CSSTignoreThisTrackID')));
 	return if ($client->pluginData('CSSTignoreThisTrackID') && $client->pluginData('CSSTignoreThisTrackID') eq $track->id);
 
 	# get custom stop time
@@ -185,11 +181,11 @@ sub customStopTimer {
 	my $stopTimeCorrection = $prefs->get('stopcorr') / 1000;
 	my $currentSongTime = Slim::Player::Source::songTime($client);
 	if (($stopTime + $stopTimeCorrection) < $songDuration && $currentSongTime >= ($stopTime + $stopTimeCorrection)) {
-		$log->debug('Current song time >= custom stop time. Play next track.');
+		main::DEBUGLOG && $log->is_debug && $log->debug('Current song time >= custom stop time. Play next track.');
 		nextTrack($client);
 	} else {
 		my $remainingTime = ($stopTime + $stopTimeCorrection) - $currentSongTime;
-		$log->debug('Current song time = '.$currentSongTime.' seconds -- custom stop time = '.$stopTime.' seconds -- global stop time correction = '.$stopTimeCorrection.' seconds -- remaining time = '.$remainingTime.' seconds');
+		main::DEBUGLOG && $log->is_debug && $log->debug('Current song time = '.$currentSongTime.' seconds -- custom stop time = '.$stopTime.' seconds -- global stop time correction = '.$stopTimeCorrection.' seconds -- remaining time = '.$remainingTime.' seconds');
 
 		# Start timer for new song
 		Slim::Utils::Timers::setTimer($client, time() + $remainingTime, \&nextTrack);
@@ -198,7 +194,7 @@ sub customStopTimer {
 
 sub nextTrack {
 	my $client = shift;
-	$log->debug('Custom stop time reached. Play next track.');
+	main::DEBUGLOG && $log->is_debug && $log->debug('Custom stop time reached. Play next track.');
 	$client->execute(['playlist', 'index', '+1']);
 }
 
@@ -209,7 +205,7 @@ sub trackInfoHandler {
 	my $currentComment = $track->comment;
 
 	return unless $currentComment && $currentComment ne '';
-	$log->debug("Current track's comment on client '".$client->id."' = ".$currentComment);
+	main::DEBUGLOG && $log->is_debug && $log->debug("Current track's comment on client '".$client->id."' = ".$currentComment);
 
 	my $hasStartTime = $currentComment =~ /STARTTIME:/;
 	my $hasStopTime = $currentComment =~ /STOPTIME:/;
@@ -248,7 +244,7 @@ sub tempIgnoreStartStopTimes {
 
 	my $currentComment = $track->comment;
 	return unless $currentComment && $currentComment ne '';
-	$log->debug("Current track's comment on client '".$client->id."' = ".$currentComment);
+	main::DEBUGLOG && $log->is_debug && $log->debug("Current track's comment on client '".$client->id."' = ".$currentComment);
 
 	my $hasStartTime = $currentComment =~ /STARTTIME:/;
 	my $hasStopTime = $currentComment =~ /STOPTIME:/;
@@ -306,7 +302,7 @@ sub tempIgnoreStartStopTimes {
 sub _tempIgnoreCSST_web {
 	my ($client, $params, $callback, $httpClient, $response) = @_;
 	my $trackID = $params->{'trackid'};
-	$log->debug('trackID = '.$trackID);
+	main::DEBUGLOG && $log->is_debug && $log->debug('trackID = '.$trackID);
 
 	_tempIgnoreCSST($client, $trackID);
 	return Slim::Web::HTTP::filltemplatefile('plugins/CustomStartStopTimes/html/tmpignorecsst.html', $params);
@@ -347,7 +343,7 @@ sub _tempIgnoreCSST_jive {
 
 sub _tempIgnoreCSST_VFD {
 	my ($client, $callback, $params, $trackID) = @_;
-	$log->debug('trackID = '.$trackID);
+	main::DEBUGLOG && $log->is_debug && $log->debug('trackID = '.$trackID);
 	my $tmpIgnorePeriod = $prefs->get('tmpignoreperiod') + 0;
 	my $cbMsg = string('PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES_DONE_SHORT').' '.$tmpIgnorePeriod.' '.string('SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMINS');
 
@@ -376,13 +372,13 @@ sub _tempIgnoreCSST {
 	$client->pluginData('CSSTignoreThisTrackID' => $track->id);
 	Slim::Utils::Timers::setTimer($client, time() + ($tmpIgnorePeriod * 60), \&tempIgnoreEndTimer, $client);
 
-	$log->debug("Will ignore start/stop times for track '".$track->title."' with ID $trackID for $tmpIgnorePeriod min on client with ID '".$client->id."'");
+	main::DEBUGLOG && $log->is_debug && $log->debug("Will ignore start/stop times for track '".$track->title."' with ID $trackID for $tmpIgnorePeriod min on client with ID '".$client->id."'");
 }
 
 sub tempIgnoreEndTimer {
 	my $client = shift;
 	$client->pluginData('CSSTignoreThisTrackID' => 'no_id');
-	$log->debug('Ignore period expired.')
+	main::DEBUGLOG && $log->is_debug && $log->debug('Ignore period expired.')
 }
 
 sub formatTime {
