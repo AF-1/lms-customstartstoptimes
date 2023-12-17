@@ -8,17 +8,15 @@
 [% END %]
 <br>
 
-[% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STARTTIMECORRECTION" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STARTTIMECORRECTION_DESC" %]
-	<input type="text" class="stdedit sliderInput_-2000_2000_100" name="pref_startcorr" id="startcorr" value="[% prefs.startcorr %]" size="3"> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMILLISECS" | string %]
-[% END %]
-<br>
-
-[% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STOPTIMECORRECTION" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STOPTIMECORRECTION_DESC" %]
-	<input type="text" class="stdedit sliderInput_-2000_2000_100" name="pref_stopcorr" id="stopcorr" value="[% prefs.stopcorr %]" size="3"> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMILLISECS" | string %]
+[% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_GLOBALTIMECORRECTION" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_GLOBALTIMECORRECTION_DESC" %]
+	<input type="text" class="stdedit sliderInput_-2000_2000_100" name="pref_globaltimecorr" id="globaltimecorr" value="[% prefs.globaltimecorr %]" size="3"> [% "SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TIMEMILLISECS" | string %]
 [% END %]
 <br>
 
 [% WRAPPER setting title="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_SHOWDECIMALS" desc="SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_SHOWDECIMALS_DESC" %]
-	<input name="pref_showdecimals" id="showdecimals" type="checkbox" [% IF prefs.showdecimals %] checked [% END %]>
+	<select class="stdedit" name="pref_showdecimals" id="showdecimals">
+		<option [% IF NOT prefs.showdecimals %]selected [% END %]value="0">[% 'NO' | getstring %]</option>
+		<option [% IF prefs.showdecimals %]selected [% END %]value="1">[% 'YES' | getstring %]</option>
+	</select>
 [% END %]
 [% PROCESS settings/footer.html %]

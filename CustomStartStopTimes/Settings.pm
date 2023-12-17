@@ -41,7 +41,7 @@ sub page {
 }
 
 sub prefs {
-	return ($prefs, qw(showdecimals startcorr stopcorr tmpignoreperiod));
+	return ($prefs, qw(showdecimals globaltimecorr tmpignoreperiod));
 }
 
 sub handler {

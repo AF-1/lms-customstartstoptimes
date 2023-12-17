@@ -2,7 +2,7 @@ PLUGIN_CUSTOMSTARTSTOPTIMES
 	EN	Custom Start Stop Times
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_DESC
-	EN	Allows you to start and stop tracks at a specified playback/song time. Just add custom start and stop times to a track's comments tag and, with the help of this plugin, the song will start and end, when you want it to. No more annoying song intros or minutes of silence at the end. More information on the GitHub page.
+	EN	Allows you to start and stop tracks at a specific playback/song time or to skip over a specific part inside the song (e.g. silence). Just add custom start, stop or skip times to a track's comments tag and, with the help of this plugin, the song will start or end, when you want it to, or skip an unwanted part. No more annoying song intros or minutes of silence. More information on the GitHub page.
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_LOG_DESC
 	EN	Log of plugin CustomStartStopTimes
@@ -19,14 +19,20 @@ PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSTARTTIME
 PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSTOPTIME
 	EN	Custom Stop Time
 
+PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSKIPSTARTTIME
+	EN	Custom Skip Start Time
+
+PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSKIPSTOPTIME
+	EN	Custom Skip Stop Time
+
 PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES_HEADER
-	EN	Ignore this tracks's start/stop times
+	EN	Ignore this tracks's start/stop/skip times
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES
-	EN	Ignore this track's start/stop times for
+	EN	Ignore this track's start/stop/skip times for
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES_DONE
-	EN	Ignoring start/stop times of this track for the next
+	EN	Ignoring start/stop/skip times of this track for the next
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_TEMPIGNORECSSTIMES_DONE_SHORT
 	EN	Ignoring this track for
@@ -62,22 +68,16 @@ SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TMPIGNOREPERIOD
 	EN	Temp. ignore period
 
 SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_TMPIGNOREPERIOD_DESC
-	EN	There's a track context menu item that will allow you to <b>temporarily</b> ignore custom start and stop times of a <b>single track</b> (on a specific client).<br>Here you can set how long the start/stop times should be ignored.
+	EN	There's a track context menu item that will allow you to <b>temporarily</b> ignore custom start, stop and skip times of a <b>single track</b> (on a specific client).<br>Here you can set for how long they should be ignored.
 
-SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STARTTIMECORRECTION
-	EN	Global start time correction
+SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_GLOBALTIMECORRECTION
+	EN	Global time correction
 
-SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STARTTIMECORRECTION_DESC
-	EN	Allows you to correct <b>all</b> custom <b>start</b> times by a specified value.<br>I'd leave this at zero (default) and only change it if there's some kind of delay that you can't get rid of otherwise.
-
-SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STOPTIMECORRECTION
-	EN	Global stop time correction
-
-SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_STOPTIMECORRECTION_DESC
-	EN	Allows you to correct <b>all</b> custom <b>stop</b> times by a specified value.<br>I'd leave this at zero (default) and only change it if there's some kind of delay that you can't get rid of otherwise.
+SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_GLOBALTIMECORRECTION_DESC
+	EN	Allows you to correct <b>all</b> custom start, stop and skip times by a specific value.<br>I'd leave this at zero (default) and only change it if there's some kind of delay that you can't get rid of <b>otherwise</b>.
 
 SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_SHOWDECIMALS
 	EN	Display decimals
 
 SETTINGS_PLUGIN_CUSTOMSTARTSTOPTIMES_SHOWDECIMALS_DESC
-	EN	By <b>default</b>, custom start and stop times on the <b>song info page</b> will be displayed <b>without</b> decimals. Check the box to display up to 4 decimals.<br>This is just a display option. The plugin uses the exact value.
+	EN	By <b>default</b>, custom start, stop and skip times on the <b>song info page</b> will be displayed <b>without</b> decimals. Check the box to display up to 4 decimals.<br>This is just a display option. The plugin uses the exact values.
