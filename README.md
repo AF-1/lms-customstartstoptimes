@@ -1,7 +1,7 @@
 Custom Start Stop Times
 ====
 
-**Custom Start Stop Times**[^1] allows you to start and stop tracks at a specific playback/song time or to skip over a specific part inside the song (e.g. silence).<br>Just add custom start, stop or skip times to a track's *comments tag* and, with the help of this plugin, the song will start[^2] or end, i.e. skip to the next one, when you want it to, or skip[^2] an unwanted part. No more annoying song intros or minutes of silence.
+**Custom Start Stop Times**[^1] allows you to start and stop tracks at a specific playback/song time or to skip over a specific part inside the song (e.g. silence).<br>Just add custom start, stop or skip times to a track's *comment tag* and, with the help of this plugin, the song will start[^2] or end, i.e. skip to the next one, when you want it to, or skip[^2] an unwanted part. No more annoying song intros or minutes of silence.
 <br><br>
 [⬅️ **Back to the list of all plugins**](https://github.com/AF-1/)
 <br><br><br><br>
@@ -15,9 +15,9 @@ Custom Start Stop Times
 [^1]:If you want localized strings in your language, please read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
 [^2]:As the LMS source code states: a "jump to a particular time in the current song should be dead-on for CBR, approximate for VBR".
 
-## Comments tag patterns
+## Comment tag patterns
 
-For this plugin to work, you need to add your custom start, stop or skip times to the **comments tag** of the tracks that you wish to start and stop at custom times or skip a specific part of. For a larger number of songs it probably makes sense to use a script (see macOS Music app example below).<br><br>
+For this plugin to work, you need to add your custom start, stop or skip times to the **comment tag** of the tracks that you wish to start and stop at custom times or skip a specific part of. For a larger number of songs it probably makes sense to use a script (see macOS Music app example below).<br><br>
 Please use the simple **patterns** listed below. They are **case-sensitive** (use upper case) but it doesn't matter whether your time value has a **comma**, a decimal **point** or neither.<br>
 
 ### Start time
@@ -59,7 +59,7 @@ It usually takes a few hours for a *new* release to be listed on the LMS plugin 
 ## Music app (macOS)
 If you use the **Music** app on **macOS**, take a look at the simple **Applescript** included in this repository:<br>
 - it can gather songs for which you have set **start** or **stop** times in the Music app in a playlist and
-- write those start and stop times to the comments tag of those tracks.
+- write those start and stop times to the comment tag of those tracks.
 
 Works for me but use at your own risk :-)<br>
 If you want to run the script on a large number of tracks, consider *exporting* the script as an *app*.[^3]
