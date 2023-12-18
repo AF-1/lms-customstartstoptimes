@@ -1,7 +1,7 @@
 Custom Start Stop Times
 ====
 
-**Custom Start Stop Times**[^1] allows you to start and stop tracks at a specific playback/song time or to skip over a specific part inside the song (e.g. silence).<br>Just add custom start, stop or skip times to a track's *comment tag* and, with the help of this plugin, the song will start[^2] or end, i.e. skip to the next one, when you want it to, or skip[^2] an unwanted part. No more annoying song intros or minutes of silence.
+**Custom Start Stop Times**[^1] allows you to start and stop tracks at a specific playback/song time or to skip a specific part of the song (e.g. silence).<br>Just add custom start, stop or skip times to a track's *comment tag* and, with the help of this plugin, the song will start[^2] or end, i.e. skip to the next one, when you want it to, or skip[^2] an unwanted part. No more annoying song intros or minutes of silence.
 <br><br>
 [⬅️ **Back to the list of all plugins**](https://github.com/AF-1/)
 <br><br><br><br>
