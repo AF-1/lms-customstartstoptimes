@@ -12,8 +12,6 @@ With **Custom Start Stop Times**[^1] you can start and stop tracks at a specific
 - LMS database = **SQLite**
 <br><br><br>
 
-[^1]:If you want localized strings in your language, please read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
-[^2]:As the LMS source code states: a "jump to a particular time in the current song should be dead-on for CBR, approximate for VBR".
 
 ## Comment tag patterns
 
@@ -41,7 +39,7 @@ You will have to set a skip **start** point **and** a time to which the plugin s
 💡 If you do a **manual jump** inside the currently playing song **beyond the skip *start* point**, **skipping is disabled** for the currently playing song.
 <br><br><br>
 
-## Screenshots
+## Screenshots[^3]
 <img src="screenshots/csst.gif" height=900>
 <br><br><br>
 
@@ -72,3 +70,7 @@ If you want to run the script on a large number of tracks, consider *exporting* 
 
 If you want to report a new issue, please fill out this [**issue report template**](https://github.com/AF-1/lms-customstartstoptimes/issues/new?template=bug_report.md&title=%5BISSUE%5D+).
 <br><br><br><br>
+
+[^1]:If you want localized strings in your language, please read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
+[^2]:As the LMS source code states: a "jump to a particular time in the current song should be dead-on for CBR, approximate for VBR".
+[^3]: The screenshots might not correspond to the current UI in every detail.
