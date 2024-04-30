@@ -6,6 +6,11 @@ With **Custom Start Stop Times**[^1] you can start and stop tracks at a specific
 [⬅️ **Back to the list of all plugins**](https://github.com/AF-1/)
 <br><br><br><br>
 
+## Screenshots[^3]
+<img src="screenshots/csst.gif" height=900>
+<br><br><br>
+
+
 ## Requirements
 
 - LMS version >= 7.**9**
@@ -39,18 +44,12 @@ You will have to set a skip **start** point **and** a time to which the plugin s
 💡 If you do a **manual jump** inside the currently playing song **beyond the skip *start* point**, **skipping is disabled** for the currently playing song.
 <br><br><br>
 
-## Screenshots[^3]
-<img src="screenshots/csst.gif" height=900>
-<br><br><br>
-
 
 ## Installation
 
-You should be able to install **Custom Start Stop Times** from the LMS main repository (LMS plugin library):<br>**LMS > Settings > Plugins**.<br>
+ **Custom Start Stop Times** is available from the LMS plugin library: **LMS > Settings > Manage Plugins**.<br>
 
 If you want to test a new patch that hasn't made it into a release version yet, you'll have to [install the plugin manually](https://github.com/AF-1/sobras/wiki/Manual-installation-of-LMS-plugins).
-
-It usually takes a few hours for a *new* release to be listed on the LMS plugin page.
 <br><br><br>
 
 
@@ -73,4 +72,4 @@ If you want to report a new issue, please fill out this [**issue report template
 
 [^1]:If you want localized strings in your language, please read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
 [^2]:As the LMS source code states: a "jump to a particular time in the current song should be dead-on for CBR, approximate for VBR".
-[^3]: The screenshots might not correspond to the current UI in every detail.
+[^3]: The screenshots might not correspond to the UI of the latest release in every detail.
