@@ -3,7 +3,7 @@
 	<id>affc43d9-1609-44e8-48ce-17b735e8b3cd</id>
 	<name>PLUGIN_CUSTOMSTARTSTOPTIMES</name>
 	<module>Plugins::CustomStartStopTimes::Plugin</module>
-	<version>1.1.4</version>
+	<version>1.1.5</version>
 	<description>PLUGIN_CUSTOMSTARTSTOPTIMES_DESC</description>
 	<creator>AF</creator>
 	<optionsURL>plugins/CustomStartStopTimes/settings/settings.html</optionsURL>
