@@ -15,7 +15,7 @@ With **Custom Start Stop Times**[^1] you can start and stop tracks at a specific
 
 ## Requirements
 
-- LMS version >= 7.**9**
+- LMS version >= 8.**2**
 - LMS database = **SQLite**
 <br><br><br>
 
