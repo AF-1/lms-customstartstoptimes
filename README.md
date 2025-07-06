@@ -61,10 +61,9 @@ If you use the **Music** app on **macOS**, take a look at the simple **Applescri
 - write those start and stop times to the comment tag of those tracks.
 
 Works for me but use at your own risk :-)<br>
-If you want to run the script on a large number of tracks, consider *exporting* the script as an *app*.[^3]
+If you want to run the script on a large number of tracks, consider *exporting* the script as an *app*.[^4]
 <br><br><br>
 
-[^3]: If you want the Music app to list your apps and Applescripts in the Scripts menu, you have to place them in `~/Library/Music/Scripts`.
 
 
 ## Report a new issue
@@ -81,3 +80,4 @@ If you find this project useful, giving it a <img src="screenshots/githubstar.pn
 [^1]:If you want localized strings in your language, please read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
 [^2]:As the LMS source code states: a "jump to a particular time in the current song should be dead-on for CBR, approximate for VBR".
 [^3]: The screenshots might not correspond to the UI of the latest release in every detail.
+[^4]: If you want the Music app to list your apps and Applescripts in the Scripts menu, you have to place them in `~/Library/Music/Scripts`.
