@@ -1,5 +1,6 @@
 Custom Start Stop Times
 ====
+![Min. LMS Version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAF-1%2Fsobras%2Fmain%2Frepos%2Flms%2Fpublic.xml&query=%2F%2F*%5Blocal-name()%3D'plugin'%20and%20%40name%3D'CustomStartStopTimes'%5D%2F%40minTarget&prefix=v&label=Min.%20LMS%20Version%20Required&color=darkgreen)<br>
 
 With **Custom Start Stop Times**[^1] you can start and stop tracks at a specific playback time or skip a specific part of the song (e.g. silence) by simply adding custom start, stop or skip times to a track's *comments tag*. With the help of this plugin, the song will start[^2] or end, i.e. skip to the next one, when you want it to, or skip[^2] an unwanted part. No more annoying song intros or minutes of silence.
 <br><br>
@@ -10,13 +11,6 @@ With **Custom Start Stop Times**[^1] you can start and stop tracks at a specific
 
 ## Screenshots[^3]
 <img src="screenshots/csst.gif" height=900>
-<br><br><br>
-
-
-## Requirements
-
-- LMS version >= 8.**2**
-- LMS database = **SQLite**
 <br><br><br>
 
 
