@@ -43,7 +43,7 @@ You will have to set a skip **start** point **and** a time to which the plugin s
 
 ## Installation
 
- **Custom Start Stop Times** is available from the LMS plugin library: **LMS > Settings > Manage Plugins**.<br>
+ **Custom Start Stop Times** is available from the LMS plugin library: `LMS > Settings > Manage Plugins`.<br>
 
 If you want to test a new patch that hasn't made it into a release version yet, you'll have to [install the plugin manually](https://github.com/AF-1/sobras/wiki/Manual-installation-of-LMS-plugins).
 <br><br><br>
