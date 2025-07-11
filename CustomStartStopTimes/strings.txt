@@ -11,7 +11,7 @@ PLUGIN_CUSTOMSTARTSTOPTIMES_SETTINGS_GITHUB_LINK_TEXT
 	EN	Click here for more information.
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_SETTINGS_GITHUB_LINK
-	EN	https://github.com/AF-1/#-custom-start-stop-times
+	EN	https://github.com/AF-1
 
 PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSTARTTIME
 	EN	Custom Start Time
