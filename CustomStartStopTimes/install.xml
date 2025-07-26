@@ -3,10 +3,11 @@
 	<id>affc43d9-1609-44e8-48ce-17b735e8b3cd</id>
 	<name>PLUGIN_CUSTOMSTARTSTOPTIMES</name>
 	<module>Plugins::CustomStartStopTimes::Plugin</module>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<description>PLUGIN_CUSTOMSTARTSTOPTIMES_DESC</description>
 	<creator>AF</creator>
 	<optionsURL>plugins/CustomStartStopTimes/settings/settings.html</optionsURL>
+	<icon>plugins/CustomStartStopTimes/html/images/csst_icon.png</icon>
 	<homepageURL>https://github.com/AF-1/lms-customstartstoptimes</homepageURL>
 	<defaultState>enabled</defaultState>
 	<targetApplication>
