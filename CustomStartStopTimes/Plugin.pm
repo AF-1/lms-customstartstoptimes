@@ -1,21 +1,7 @@
 #
 # Custom Start Stop Times
-#
 # (c) 2022 AF
-#
-# GPLv3 license
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# Licensed under the GPLv3 - see LICENSE file
 #
 
 package Plugins::CustomStartStopTimes::Plugin;
@@ -27,21 +13,16 @@ use utf8;
 use base qw(Slim::Plugin::Base);
 
 use Slim::Utils::Log;
-use Slim::Utils::Strings qw(string cstring);
+use Slim::Utils::Strings qw(string);
 use Slim::Utils::Prefs;
-use Slim::Utils::Text;
-use Slim::Utils::Unicode;
 use Slim::Schema;
-use POSIX;
 use Time::HiRes qw(time);
-use Path::Class;
 
 my $log = Slim::Utils::Log->addLogCategory({
 	'category' => 'plugin.customstartstoptimes',
 	'defaultLevel' => 'ERROR',
 	'description' => 'PLUGIN_CUSTOMSTARTSTOPTIMES',
 });
-my $serverPrefs = preferences('server');
 my $prefs = preferences('plugin.customstartstoptimes');
 
 sub initPlugin {
@@ -121,7 +102,7 @@ sub _CSSTcommandCB {
 					Slim::Utils::Timers::killTimers($client, \&nextTrack);
 					Slim::Utils::Timers::killTimers($client, \&skipPart);
 					jumpToStartTime($client, $track) if $hasStartTime;
-					customStopTimer($client, $track) if $hasStopTime;;
+					customStopTimer($client, $track) if $hasStopTime;
 					$client->pluginData('CSSTskippedTrackID' => '') if ($client->pluginData('CSSTskippedTrackID') && $client->pluginData('CSSTskippedTrackID') ne $track->id);
 					customSkipTimer($client, $track) if ($hasSkipStartTime && $hasSkipStopTime);
 				}
@@ -173,7 +154,7 @@ sub jumpToStartTime {
 	# get custom start time
 	my $currentComment = $track->comment;
 	return unless $currentComment =~ /STARTTIME:/;
-	$currentComment =~ /STARTTIME:([0-9]+([.|,][0-9]+)*)STARTEND?/;
+	$currentComment =~ /STARTTIME:([0-9]+([.,][0-9]+)*)STARTEND/;
 	my $startTime = $1;
 	$startTime =~ s/,/./g;
 	my $songDuration = $track->secs;
@@ -184,7 +165,7 @@ sub jumpToStartTime {
 	}
 
 	# only jump if current song time < custom start time (don't if rew or relative jump)
-	if (($startTime + $globalTimeCorrection) > 0 && Slim::Player::Source::songTime($client) < ($startTime + $globalTimeCorrection) && ($startTime + $globalTimeCorrection) < $track->secs) {
+	if (($startTime + $globalTimeCorrection) > 0 && Slim::Player::Source::songTime($client) < ($startTime + $globalTimeCorrection)) {
 		main::INFOLOG && $log->is_info && $log->info('Jumping to custom start time.');
 		$client->execute(['time', $startTime + $globalTimeCorrection]);
 	}
@@ -202,7 +183,7 @@ sub customStopTimer {
 	# get custom stop time
 	my $currentComment = $track->comment;
 	return unless $currentComment =~ /STOPTIME:/;
-	$currentComment =~ /STOPTIME:([0-9]+([.|,][0-9]+)*)STOPEND?/;
+	$currentComment =~ /STOPTIME:([0-9]+([.,][0-9]+)*)STOPEND/;
 	my $stopTime = $1;
 	$stopTime =~ s/,/./g;
 	my $songDuration = $track->secs;
@@ -213,7 +194,7 @@ sub customStopTimer {
 	}
 
 	my $currentSongTime = Slim::Player::Source::songTime($client);
-	if (($stopTime + $globalTimeCorrection) < $songDuration && $currentSongTime >= ($stopTime + $globalTimeCorrection)) {
+	if ($currentSongTime >= ($stopTime + $globalTimeCorrection)) {
 		main::INFOLOG && $log->is_info && $log->info('Current song time >= custom stop time. Play next track.');
 		nextTrack($client);
 	} else {
@@ -243,7 +224,7 @@ sub customSkipTimer {
 	# get custom skip start time
 	my $currentComment = $track->comment;
 	return unless $currentComment =~ /SKIPSTART:/;
-	$currentComment =~ /SKIPSTART:([0-9]+([.|,][0-9]+)*)SKIPSTARTXXX?/;
+	$currentComment =~ /SKIPSTART:([0-9]+([.,][0-9]+)*)SKIPSTARTXXX/;
 	my $skipStartTime = $1;
 	$skipStartTime =~ s/,/./g;
 	my $songDuration = $track->secs;
@@ -254,7 +235,7 @@ sub customSkipTimer {
 	}
 
 	my $currentSongTime = Slim::Player::Source::songTime($client);
-	if (($skipStartTime + $globalTimeCorrection) < $songDuration && $currentSongTime >= ($skipStartTime + $globalTimeCorrection) && ($currentSongTime - ($skipStartTime + $globalTimeCorrection) <= 10)) { # do not skip after manual jump to a position > 10 secs beyond the skip start time
+	if ($currentSongTime >= ($skipStartTime + $globalTimeCorrection) && ($currentSongTime - ($skipStartTime + $globalTimeCorrection) <= 10)) { # do not skip after manual jump to a position > 10 secs beyond the skip start time
 		main::INFOLOG && $log->is_info && $log->info('Current song time within custom skip start margin (= skip start point + 10 secs). Jump to skip stop time.');
 		skipPart($client, $track);
 	} else {
@@ -284,7 +265,7 @@ sub skipPart {
 	# get custom skip stop time
 	my $currentComment = $track->comment;
 	return unless $currentComment =~ /SKIPSTOP:/;
-	$currentComment =~ /SKIPSTOP:([0-9]+([.|,][0-9]+)*)SKIPSTOPXXX?/;
+	$currentComment =~ /SKIPSTOP:([0-9]+([.,][0-9]+)*)SKIPSTOPXXX/;
 	my $skipStopTime = $1;
 	$skipStopTime =~ s/,/./g;
 	my $globalTimeCorrection = $prefs->get('globaltimecorr') / 1000;
@@ -293,7 +274,6 @@ sub skipPart {
 		main::DEBUGLOG && $log->is_debug && $log->debug('Skip stop time >= song duration. Not skipping.');
 		return;
 	}
-	my $currentSongTime = Slim::Player::Source::songTime($client);
 
 	$client->execute(['time', $skipStopTime + $globalTimeCorrection]);
 	$client->pluginData('CSSTskippedTrackID' => $track->id);
@@ -317,37 +297,31 @@ sub trackInfoHandler {
 	return unless ($hasStartTime || $hasStopTime || ($hasSkipStartTime && $hasSkipStopTime));
 	if ($infoItem eq 'starttime') {
 		return unless $hasStartTime;
-		$currentComment =~ /STARTTIME:([0-9]+([.|,][0-9]+)*)STARTEND?/;
+		$currentComment =~ /STARTTIME:([0-9]+([.,][0-9]+)*)STARTEND/;
 		my $startTime = $1;
 		$startTime =~ s/,/./g;
 
 		$infoItemName = string('PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSTARTTIME');
 		$returnVal = formatTime($startTime);
-	}
-
-	if ($infoItem eq 'stoptime') {
+	} elsif ($infoItem eq 'stoptime') {
 		return unless $hasStopTime;
-		$currentComment =~ /STOPTIME:([0-9]+([.|,][0-9]+)*)STOPEND?/;
+		$currentComment =~ /STOPTIME:([0-9]+([.,][0-9]+)*)STOPEND/;
 		my $stopTime = $1;
 		$stopTime =~ s/,/./g;
 
 		$infoItemName = string('PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSTOPTIME');
 		$returnVal = formatTime($stopTime);
-	}
-
-	if ($infoItem eq 'skipstarttime') {
+	} elsif ($infoItem eq 'skipstarttime') {
 		return unless $hasSkipStartTime;
-		$currentComment =~ /SKIPSTART:([0-9]+([.|,][0-9]+)*)SKIPSTARTXXX?/;
+		$currentComment =~ /SKIPSTART:([0-9]+([.,][0-9]+)*)SKIPSTARTXXX/;
 		my $skipStartTime = $1;
 		$skipStartTime =~ s/,/./g;
 
 		$infoItemName = string('PLUGIN_CUSTOMSTARTSTOPTIMES_CUSTOMSKIPSTARTTIME');
 		$returnVal = formatTime($skipStartTime);
-	}
-
-	if ($infoItem eq 'skipstoptime') {
+	} elsif ($infoItem eq 'skipstoptime') {
 		return unless $hasSkipStopTime;
-		$currentComment =~ /SKIPSTOP:([0-9]+([.|,][0-9]+)*)SKIPSTOPXXX?/;
+		$currentComment =~ /SKIPSTOP:([0-9]+([.,][0-9]+)*)SKIPSTOPXXX/;
 		my $skipStopTime = $1;
 		$skipStopTime =~ s/,/./g;
 
@@ -451,6 +425,7 @@ sub _tempIgnoreCSST_jive {
 	my $trackID = $request->getParam('_trackid');
 	if (!defined $trackID) {
 		$log->warn('trackID required!');
+		$request->setStatusBadDispatch();
 		return;
 	}
 
@@ -504,17 +479,20 @@ sub _tempIgnoreCSST {
 sub tempIgnoreEndTimer {
 	my $client = shift;
 	$client->pluginData('CSSTignoreThisTrackID' => 'no_id');
-	main::DEBUGLOG && $log->is_debug && $log->debug('Ignore period expired.')
+	main::DEBUGLOG && $log->is_debug && $log->debug('Ignore period expired.');
 }
 
 sub formatTime {
 	my $timeinseconds = shift;
-	my $seconds = ((int($timeinseconds)) % 60);
+	my $seconds = int($timeinseconds) % 60;
 	if ($prefs->get('showdecimals')) {
-		my $decimals = sprintf("%.2f", ($timeinseconds - int($timeinseconds)));
-		$seconds = $seconds + $decimals;
+		my $decimals = $timeinseconds - int($timeinseconds);
+		if ($decimals > 0) {
+			$seconds = int($seconds) + $decimals;
+			$seconds = sprintf("%.4f", $seconds);
+		}
 	}
-	my $minutes = (int($timeinseconds / (60))) % 60;
+	my $minutes = int($timeinseconds / 60);
 	my $formattedTime = ($minutes > 0 ? $minutes : '0').':'.($seconds > 0 ? ($seconds < 10 ? '0'.$seconds : $seconds) : '00');
 	return $formattedTime;
 }
