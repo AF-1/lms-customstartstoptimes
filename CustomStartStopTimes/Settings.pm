@@ -30,9 +30,4 @@ sub prefs {
 	return ($prefs, qw(showdecimals globaltimecorr tmpignoreperiod));
 }
 
-sub handler {
-	my ($class, $client, $paramRef) = @_;
-	return $class->SUPER::handler($client, $paramRef);
-}
-
 1;
