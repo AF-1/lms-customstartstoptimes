@@ -63,12 +63,10 @@ If you want to run the script on a large number of tracks, consider *exporting* 
 ## Report a new issue
 
 To report a new issue please file a GitHub [**issue report**](https://github.com/AF-1/lms-customstartstoptimes/issues/new/choose).
-<br><br><br>
+<br><br>
+---
 
-
-## ⭐ Help others discover this project
-
-If you find this project useful, giving it a <img src="screenshots/githubstar.png" width="20" height="20" alt="star" /> (top right of this page) is a great way to show your support and help others discover it. Thank you.
+If this project was useful to you, you can star the repository using the <img src="screenshots/githubstar.png" width="20" height="20" alt="star" /> button in the top-right corner of this page.
 <br><br><br><br>
 
 [^1]:If you want localized strings in your language, please read <a href="https://github.com/AF-1/sobras/wiki/Adding-localization-to-LMS-plugins"><b>this</b></a>.
